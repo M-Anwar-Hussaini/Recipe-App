@@ -3,9 +3,9 @@ class CreateFoods < ActiveRecord::Migration[7.1]
     create_table :foods do |t|
       t.string :name
       t.integer :measurement_unit
-      t.decimal :price
+      t.float :price
       t.integer :quantity
-      t.integer :user_id
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
