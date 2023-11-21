@@ -156,8 +156,7 @@ Example command:
 👤 **Anwar Hussaini**
 
 - GitHub: [@M-Anwar-Hussaini](https://github.com/M-Anwar-Hussaini)
-- Twitter: [@M-Anwar-Hussaini](https://twitter.com/M-Anwar-Hussaini)
-- LinkedIn: [in/M-Anwar-Hussaini](https://www.linkedin.com/in/M-Anwar-Hussaini)
+- LinkedIn: [in/mohammad-anwar-hussaini-876638267](https://www.linkedin.com/in/mohammad-anwar-hussaini-876638267/)
 
 👤 **Pablo Thasi**
 
