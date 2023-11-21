@@ -126,7 +126,6 @@ Install this project with:
   rails db:setup
   rails db:migrate
 ```
--
 
 ### Usage
 
@@ -171,7 +170,6 @@ Example command:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
 
 - [ ] **[Inventory list and details]**
 - [ ] **[Shopping list based on in inventory availabilty ]**
