@@ -1,9 +1,17 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+user = User.create(name: 'Anwar Hussaini')
+names = ['Creamy Garlic Parmesan Chicken', 'Spicy Mango Shrimp Tacos', "Mediterranean Quinoa Salad", "Thai Basil Chicken Stir-Fry"]
+descriptions = ['Indulge your taste buds with this delectable Creamy Garlic Parmesan Chicken recipe that promises a symphony of flavors in every bite. Tender chicken breasts are pan-seared to perfection, creating a golden-brown crust, then bathed in a velvety sauce that combines the rich creaminess of Parmesan cheese with the robust kick of fresh garlic. The result is a dish that effortlessly balances savory and creamy notes, leaving you craving every last spoonful. This elegant yet easy-to-make recipe is a culinary masterpiece that will elevate any dinner table. Serve it over a bed of al dente pasta or with a side of roasted vegetables for a truly satisfying dining experience. Creamy Garlic Parmesan Chicken is a timeless classic that guarantees to impress even the most discerning palates.',
+                "Transport your taste buds to a tropical paradise with these mouthwatering Spicy Mango Shrimp Tacos. Succulent shrimp are marinated in a zesty blend of chili powder, cumin, and lime juice, creating a perfect balance of heat and citrusy freshness. The star of the show is the homemade spicy mango salsa, featuring ripe mango chunks, diced red onions, cilantro, and a hint of jalapeño for that extra kick. Assemble these vibrant ingredients into warm, soft taco shells, and you'll be treated to a burst of flavors and textures with every bite—sweetness from the mango, heat from the shrimp, and a refreshing crunch from the salsa. These tacos are a celebration of summer on a plate, making them an ideal choice for a casual dinner or a festive gathering with friends. Get ready to embark on a flavor-packed journey with these Spicy Mango Shrimp Tacos that effortlessly combine the best of both worlds.",
+                "Elevate your salad game with the refreshing and nutritious Mediterranean Quinoa Salad. This vibrant dish is a symphony of colors and flavors, combining fluffy quinoa with an array of fresh vegetables and Mediterranean-inspired ingredients. Cherry tomatoes, cucumber, red onion, and Kalamata olives bring a burst of freshness, while feta cheese adds a creamy and tangy dimension. The salad is dressed in a zesty vinaigrette made with extra virgin olive oil, lemon juice, garlic, and a medley of herbs like oregano and basil. The quinoa serves as a hearty base, providing a satisfying texture and an extra boost of protein. Whether enjoyed as a light lunch, a side dish, or a main course, the Mediterranean Quinoa Salad is a delicious and wholesome option that transports your taste buds to the sunny shores of the Mediterranean. It's a perfect choice for those seeking a flavorful and nutrient-packed meal without compromising on taste.",
+                "Embark on a culinary adventure with the tantalizing Thai Basil Chicken Stir-Fry. This dish is a harmonious blend of bold flavors and vibrant colors that will transport your senses straight to the streets of Bangkok. Succulent chicken breast slices are wok-fried to perfection, creating a crispy exterior while maintaining a juicy interior. The star of the show is the aromatic combination of Thai basil, garlic, and chili, infusing the dish with a fragrant and spicy kick. The stir-fry is elevated with a savory sauce made from a fusion of soy sauce, oyster sauce, and a hint of sweetness from brown sugar. Garnished with fresh cilantro and sliced red chili for an extra pop of color and heat, this Thai Basil Chicken Stir-Fry is a feast for both the eyes and the palate. Serve it over jasmine rice or noodles for a quick, flavorful, and satisfying meal that captures the essence of Thai street food."
+]
+4.times do |index|
+  recipe = Recipe.new
+  recipe.name = names[index]
+  recipe.description = descriptions[index]
+  recipe.user = user
+  recipe.preparation_time = 1
+  recipe.cooking_time = 1
+  recipe.public = index.even?
+  recipe.save
+end
