@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header">
+    <%= "Details of #{@recipe.name}" %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @recipe.name %></h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Preparation time: <%= @recipe.preparation_time %></li>
+      <li class="list-group-item">Cooking time: <%= @recipe.cooking_time %></li>
+      <li class="list-group-item">
+        <p><strong>Description</strong></p>
+        <p><%= @recipe.description %></p>
+      </li>
+    </ul>
+  </div>
+</div>
