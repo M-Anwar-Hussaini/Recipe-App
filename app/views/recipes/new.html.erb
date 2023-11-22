@@ -1,0 +1,56 @@
+<%= form_with model: @recipe, method: :post, url: recipes_path, class: 'form border rounded border-primary p-4' do |form| %>
+
+  <% if @recipe.errors.any? %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <h3>The recipe could not be created because: </h3>
+      <ul class="list-group list-group-numbered mb-3">
+        <% @recipe.errors.full_messages.each do |error| %>
+          <li class="list-group-item list-group-item-danger"><%= error %></li>
+        <% end %>
+      </ul>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+  <% end %>
+  <h1>Add a new Recipe</h1>
+  <div class="my-3">
+    <%= form.label :name %>
+    <%= form.text_field :name,
+                        placeholder: 'Name of recipe',
+                        class: 'form-control' %>
+  </div>
+
+
+  <div class="my-3">
+    <%= form.label :preparation_time, "Preparation time (In hour)" %>
+    <%= form.number_field :preparation_time, step: '0.1', any: true,
+                          placeholder: 'The to prepare recipe (in hour).',
+                          value: '1',
+                          class: 'form-control' %>
+  </div>
+
+  <div class="my-3">
+    <%= form.label :cooking_time, "Cooking time (In hour)" %>
+    <%= form.number_field :cooking_time, step: '0.1', any: true,
+                          value: '1',
+                          placeholder: 'The to cook recipe (in hour).',
+                          class: 'form-control' %>
+  </div>
+
+  <div class="my-3">
+    <%= form.label :description %>
+    <%= form.text_area :description, placeholder: 'Description', rows: 5, class: 'form-control' %>
+  </div>
+
+  <div class="form-check form-switch my-3">
+    <%= form.check_box :public, class: 'form-check-input', role: 'switch' %>
+    <%= form.label :public, class: 'form-check-label' %>
+  </div>
+
+  <div class="form-group text-end">
+    <%= form.submit class: 'd-block w-100 btn btn-success' %>
+  </div>
+
+
+
+<% end %>
