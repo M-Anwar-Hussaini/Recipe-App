@@ -1,0 +1,16 @@
+<table class="recipeFoods">
+  <tr>
+    <th>Food</th>
+    <th>Measurement unit</th>
+    <th>Unit price</th>
+    <th>Actions</th>
+    </tr>
+    <% @foods.each do |food| %>
+     <tr>
+       <td> <%= food.name %> </td>
+       <td> <%= food.measurement_unit %> </td>
+       <td> <%= food.price %></td>
+     </tr>
+    <% end %>
+  
+</table>
