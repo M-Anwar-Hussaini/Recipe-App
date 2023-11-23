@@ -12,13 +12,13 @@ class FoodController < ApplicationController
     @food.user = current_user
     if @food.save
       # redirect_to new_inventory_food_path(food: @food, inventory: @inventory), notice: 'Food was successfully created.'
-      redirect_to index_food_path
+      redirect_to food_index_path
     else
       render :new, notice: 'Please try again'
     end
   end
 
   def food_params
-    params.require(:food).permit(:name, :measurement_unit, :other_attributes)
+    params.require(:food).permit(:name, :measurement_unit, :quantity, :price, :other_attributes)
   end
 end
