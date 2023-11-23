@@ -1,16 +1,31 @@
-<table class="recipeFoods">
-  <tr>
-    <th>Food</th>
-    <th>Measurement unit</th>
-    <th>Unit price</th>
-    <th>Actions</th>
-    </tr>
-    <% @foods.each do |food| %>
-     <tr>
-       <td> <%= food.name %> </td>
-       <td> <%= food.measurement_unit %> </td>
-       <td> <%= food.price %></td>
-     </tr>
-    <% end %>
-  
-</table>
+<div>
+  <h1>Food</h1>
+
+  <div class='my-2 text-end'>
+    <%= link_to 'Add a new food', new_food_path, class: 'btn btn-primary' %>
+  </div>
+
+  <% if @foods.empty? %>
+    <p>There is not any food yet</p>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Food name</th>
+          <th scope="col">Measurement unit</th>
+          <th scope="col">Unit price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foods.each do |food| %>
+        <tr>
+          <td scope="row"> <%= food.name %> </td>
+          <td> <%= food.measurement_unit %> </td>
+          <td> <%= food.price %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+       
