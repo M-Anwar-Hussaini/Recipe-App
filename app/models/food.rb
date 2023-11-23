@@ -1,5 +1,5 @@
 class Food < ApplicationRecord
-  validates :price, numericality: { only_integer: true }
+  validates :name, :measurement_unit, :price, presence: true
   has_many :recipe_foods, dependent: :destroy
   belongs_to :user
 end
