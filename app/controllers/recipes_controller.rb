@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @recipes = Recipe.all
   end
@@ -12,7 +13,7 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
     if @recipe.save
 
-      redirect_to recipes_path
+      redirect_to recipes_path, notice: 'The recipe successfully created.'
     else
       render :new
     end
@@ -21,7 +22,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy!
-    redirect_to recipes_path
+    redirect_to recipes_path, notice: 'The recipe was successfully deleted.'
   end
 
   def show
