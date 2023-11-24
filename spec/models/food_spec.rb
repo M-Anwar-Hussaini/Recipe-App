@@ -5,17 +5,24 @@ RSpec.describe Food, type: :model do
   before { subject.save }
 
   describe 'Data validation' do
-    it 'Should have a valid name' do
-      subject.name = 'Salad'
-      expect(subject).to be_valid
+    it 'is not valid without a name' do
+      subject.name = nil
+      expect(subject).to_not be_valid
     end
 
-    it 'Should have a valid measurement_unit' do
-      expect(subject.measurement_unit).to eq('g')
+    it 'is not valid without a measurement unit' do
+      subject.measurement_unit = nil
+      expect(subject).to_not be_valid
     end
 
-    it 'Should have a valid numerical price value' do
-      expect(subject.price).to be_integer
+    it 'is not valid without a price' do
+      subject.price = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'is not valid without a user' do
+      subject.user = nil
+      expect(subject).to_not be_valid
     end
   end
 end

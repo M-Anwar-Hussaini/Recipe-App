@@ -1,19 +1,39 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { User.new(name: 'Pablo', email: 'thasipablo@gmail', password: 439_094, password_confirmation: 439_094) }
+  subject { User.new(name: 'Pablo', email: 'thasipablo@gmail.com', password: '439_094', password_confirmation: '439_094') }
 
   before { subject.save }
 
-  it 'Should have a valid name' do
-    expect(subject.name).to be_present
+  describe 'Data validation' do
+    it 'is valid with valid attributes' do
+      expect(subject).to be_valid
+    end
+
+    it 'is not valid without a name' do
+      subject.name = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'is not valid without an email' do
+      subject.email = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'is not valid without a password' do
+      subject.password = nil
+      expect(subject).to_not be_valid
+    end
   end
 
-  it 'Should have a valid email' do
-    expect(subject.email).to be_present
-  end
+  describe 'Password validation' do
+    it 'should have a valid password length' do
+      expect(subject).to be_valid
+    end
 
-  it 'Should have a valid password' do
-    expect(subject.password).to be_present
+    it 'is not valid with a short password' do
+      subject.password = '123'
+      expect(subject).to_not be_valid
+    end
   end
 end
