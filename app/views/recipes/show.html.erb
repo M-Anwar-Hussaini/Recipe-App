@@ -4,6 +4,9 @@
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= @recipe.name %></h5>
+    <% if @recipe.user == current_user %>
+      <%= button_to 'Delete', recipe_path(@recipe), method: :delete, class: 'btn btn-sm btn-danger my-2' %>
+    <% end %>
     <ul class="list-group list-group-flush p-3">
       <div class="row">
         <li class="list-group-item col border">Preparation time: <%= @recipe.preparation_time %></li>
@@ -22,5 +25,10 @@
         </li>
       </div>
     </ul>
+    <div class="d-flex justify-content-between my-3">
+      <%=link_to 'Generate shopping list', new_food_path, class: 'btn btn-secondary' %>
+      <%=link_to 'Add ingredients', new_food_path, class: 'btn btn-secondary' %>
+    </div>
   </div>
+
 </div>
