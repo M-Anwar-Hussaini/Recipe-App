@@ -1,0 +1,17 @@
+<h2 class="mt-5 mb-3 text-center">Public Recipes</h2>
+<ul class="list-group">
+  <% @public_recipes.each do |recipe| %>
+    <li class="list-group-item">
+      <div class="row p-3 align-items-center">
+        <div class="col-8">
+          <h5><%= recipe.name %></h5>
+          <p><strong>By</strong>: <%= recipe.user.name %></p>
+        </div>
+        <div class="col-4">
+          <p><strong>Total food items: </strong><%=recipe.recipe_foods.count %></p>
+          <p><strong>Total Price: </strong>$<%=recipe.total_price %></p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
