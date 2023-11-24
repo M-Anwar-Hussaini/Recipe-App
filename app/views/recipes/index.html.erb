@@ -9,26 +9,30 @@
   <% end %>
   <ul class="list-group">
     <% @recipes.each do |recipe| %>
-      <li class="list-group-item my-3 border rounded border-secondary py-4">
-        <div class="row">
-          <div class="col-4 text-center ">
-            <h3 class="mb-3"><%= recipe.name %></h3>
-            <%= button_to "Remove",
-                          recipe,
-                          method: :delete,
-                          class: 'btn btn-danger btn-sm',
-                          data: { confirm: 'Are you sure to delete this recipe?' }
-            %>
-          </div>
-          <div class="col-8">
-            <%= recipe.description %>
-            <div class="text-end">
-              <%= link_to 'Show details', recipe_path(recipe), class: 'btn btn-secondary btn-sm' %>
+      <% if recipe.user == current_user || recipe.public %>
+        <li class="list-group-item my-3 border rounded border-secondary py-4">
+          <div class="row">
+            <div class="col-4 text-center ">
+              <h3 class="mb-3"><%= recipe.name %></h3>
+              <% if recipe.user == current_user %>
+                <%= button_to "Remove",
+                              recipe,
+                              method: :delete,
+                              class: 'btn btn-danger btn-sm',
+                              data: { confirm: 'Are you sure to delete this recipe?' }
+                %>
+              <% end %>
             </div>
+            <div class="col-8">
+              <%= recipe.description %>
+              <div class="text-end">
+                <%= link_to 'Show details', recipe_path(recipe), class: 'btn btn-secondary btn-sm' %>
+              </div>
 
+            </div>
           </div>
-        </div>
-      </li>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 
