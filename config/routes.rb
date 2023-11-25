@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :public_recipes, only: [:index]
   resources :recipes, only: [:index, :new, :create, :destroy, :show]
   resources :food, only: [:index, :new, :create, :destroy, :show]
+  resources :shopping_list, only: [:index]
 end
