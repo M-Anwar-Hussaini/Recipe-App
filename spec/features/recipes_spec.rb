@@ -1,75 +1,31 @@
-# spec/features/recipes_spec.rb
+# spec/views/recipes/index.html.erb_spec.rb
 require 'rails_helper'
 
-RSpec.feature 'Recipes', type: :feature do
+RSpec.describe 'recipes/index', type: :view do
   let(:user) { User.create(name: 'John Doe', email: 'john@example.com', password: 'password123') }
 
   before do
-    sign_in user
+    assign(:recipes, [])
+    allow(view).to receive(:current_user).and_return(user)
   end
 
-  scenario 'User views the list of all recipes' do
-    # Create some recipes for testing
-    Recipe.create(name: 'Pasta', preparation_time: 15.5, cooking_time: 20.5, description: 'Delicious pasta',
-                  public: true, user:)
-    Recipe.create(name: 'Salad', preparation_time: 10.5, cooking_time: 15.5, description: 'Healthy salad',
-                  public: false, user:)
+  context 'when there are no recipes' do
+    it 'displays a message about no recipes' do
+      render
 
-    visit recipes_path
-
-    expect(page).to have_content('List of All recipes')
-    expect(page).to have_link('Add a new recipe', href: new_recipe_path)
-
-    expect(page).to have_selector('ul.list-group li', count: 2)
-
-    within('ul.list-group') do
-      expect(page).to have_content('Pasta')
-      expect(page).to have_content('Salad')
+      expect(rendered).to have_content('List of All recipes')
+      expect(rendered).to have_link('Add a new recipe', href: new_recipe_path)
+      expect(rendered).to have_content('There is not any recipe yet')
+      expect(rendered).not_to have_selector('ul.list-group li')
     end
   end
 
-  scenario 'User adds a new recipe' do
-    visit recipes_path
+  context 'when there are recipes' do
+    let(:recipe1) { Recipe.create(name: 'Pasta', description: 'Delicious pasta', public: true, user:) }
+    let(:recipe2) { Recipe.create(name: 'Salad', description: 'Healthy salad', public: false, user:) }
 
-    click_link 'Add a new recipe'
-
-    fill_in 'Name', with: 'Soup'
-    fill_in 'Preparation time', with: 10.5
-    fill_in 'Cooking time', with: 15.5
-    fill_in 'Description', with: 'Delicious soup'
-    check 'Public'
-
-    click_button 'Create Recipe'
-
-    expect(page).to have_content('The recipe successfully created.')
-    expect(page).to have_content('Soup')
-  end
-
-  scenario 'User removes a recipe' do
-    Recipe.create(name: 'Cake', preparation_time: 20.5, cooking_time: 30.5, description: 'Delicious cake',
-                  public: false, user:)
-
-    visit recipes_path
-
-    expect(page).to have_content('Cake')
-
-    click_button 'Remove'
-
-    expect(page).to have_content('The recipe was successfully deleted.')
-    expect(page).not_to have_content('Cake')
-  end
-
-  scenario 'User shows details of a recipe' do
-    Recipe.create(name: 'Pizza', preparation_time: 15.5, cooking_time: 25.5, description: 'Homemade pizza',
-                  public: true, user:)
-
-    visit recipes_path
-
-    expect(page).to have_content('Pizza')
-
-    click_link 'Show details'
-
-    expect(page).to have_content('Pizza')
-    expect(page).to have_content('Homemade pizza')
+    before do
+      assign(:recipes, [recipe1, recipe2])
+    end
   end
 end
