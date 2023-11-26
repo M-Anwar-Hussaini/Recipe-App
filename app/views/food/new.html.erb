@@ -1,0 +1,40 @@
+<%= form_with(model: @food, method: :post, url: food_index_path, class: 'form border rounded border-primary p-4') do |form| %>
+  <% if @food.errors.any? %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <h3>The food could not be created because: </h3>
+      <ul class="list-group list-group-numbered mb-3">
+        <% @food.errors.full_messages.each do |error| %>
+          <li class="list-group-item list-group-item-danger"><%= error %></li>
+        <% end %>
+      </ul>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <h1>Add a new Food</h1>
+
+  <div class="my-3">
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="my-3">
+    <%= form.label :measurement_unit, style: "display: block" %>
+    <%= form.text_field :measurement_unit, class: 'form-control' %>
+  </div>
+
+  <div class="my-3">
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity, class: 'form-control' %>
+  </div>
+
+  <div class="my-3">
+    <%= form.label :price, style: "display: block" %>
+    <%= form.number_field :price, class: 'form-control' %>
+  </div>
+
+  <div class="form-group text-end">
+    <%= form.submit class: 'd-block w-100 btn btn-success' %>
+  </div>
+<% end %>
+  

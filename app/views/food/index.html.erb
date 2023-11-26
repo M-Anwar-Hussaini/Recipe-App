@@ -1,0 +1,33 @@
+<div>
+  <h1>Food</h1>
+
+  <div class='my-2 text-end'>
+    <%= link_to 'Add a new food', new_food_path, class: 'btn btn-primary' %>
+  </div>
+
+  <% if @foods.empty? %>
+    <p>There is not any food yet</p>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Food name</th>
+          <th scope="col">Measurement unit</th>
+          <th scope="col">Unit price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foods.each do |food| %>
+        <tr>
+          <td scope="row"> <%= food.name %> </td>
+          <td> <%= food.measurement_unit %> </td>
+          <td> <%= food.price %></td>
+          <td> <%= button_to "Remove", food, method: :delete , class:('btn btn-sm btn-danger my-2'), remote: true %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+       
